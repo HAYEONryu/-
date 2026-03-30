@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toourguest.com/cards/20251122">
   <meta name="theme-color" content="#f7dede">
-  <link rel="stylesheet" href="css/tailwind-like.css">
+  <link rel="stylesheet" href="/css/tailwind-like.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -18,14 +18,14 @@
   <style>
     @font-face {
       font-family: Suit;
-      src: url("fonts/subset-SUIT-Light.woff2") format("woff2");
+      src: url("/fonts/subset-SUIT-Light.woff2") format("woff2");
       font-weight: 300;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/subset-SUIT-Regular.woff2") format("woff2");
+      src: url("/fonts/subset-SUIT-Regular.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -39,21 +39,21 @@
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/subset-SUIT-Regular.woff2") format("woff2");
+      src: url("/fonts/subset-SUIT-Regular.woff2") format("woff2");
       font-weight: 700;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Sparkle;
-      src: url("fonts/Sparkle.woff2") format("woff2");
+      src: url("/fonts/Sparkle.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: KoreanHand;
-      src: url("fonts/Cafe24SsurroundAir-v1.1.woff2") format("woff2");
+      src: url("/fonts/Cafe24SsurroundAir-v1.1.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -140,7 +140,7 @@
       min-height: 620px;
       background:
         linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
-        url("img/image1.jpg");
+        url("/img/image1.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -731,7 +731,7 @@
       </div>
     </section>
     <div style="text-align:center; margin-top: 40px; margin-bottom: -6px; background:#fff;">
-      <img src="img/함께걷기.png" alt="함께걷기" style="display:inline-block; width:50%; max-width:150px; height:auto;">
+      <img src="/img/함께걷기.png" alt="함께걷기" style="display:inline-block; width:50%; max-width:150px; height:auto;">
     </div>
     <section class="section">
       <p class="small">살아가며 평생의 인연을 만나는 것,</p>
@@ -1031,14 +1031,14 @@
 
       async function loadGalleryImages() {
         var preferredOrdered = [
-          "img/us/제시1.jpg",
-          "img/us/제시2.jpg",
-          "img/us/제시3.jpg",
-          "img/us/제시4.jpg",
-          "img/us/제시5.jpg",
-          "img/us/제시6.jpg",
-          "img/us/제시7.jpg",
-          "img/us/제시8.jpg",
+          "/img/us/제시1.jpg",
+          "/img/us/제시2.jpg",
+          "/img/us/제시3.jpg",
+          "/img/us/제시4.jpg",
+          "/img/us/제시5.jpg",
+          "/img/us/제시6.jpg",
+          "/img/us/제시7.jpg",
+          "/img/us/제시8.jpg",
         ];
         var exts = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
         var candidates = [];
@@ -1046,10 +1046,10 @@
         var j;
         for (i = 1; i <= 80; i += 1) {
           for (j = 0; j < exts.length; j += 1) {
-            candidates.push("img/us/" + i + "." + exts[j]);
+            candidates.push("/img/us/" + i + "." + exts[j]);
           }
         }
-        candidates.push("img/us/main.jpg", "img/us/main.png");
+        candidates.push("/img/us/main.jpg", "/img/us/main.png");
 
         var checked = await Promise.all(candidates.map(testImage));
         var rest = checked.filter(function (p) { return !!p; });
@@ -1232,6 +1232,9 @@
 
   <script>
     (function () {
+      /** 구글 앱스 스크립트 웹앱 배포 URL (.../exec). 비우면 시트 전송 없이 로컬만 동작 */
+      var RSVP_SHEET_WEBAPP_URL = "";
+
       var modal = document.getElementById("rsvpModal");
       var overlay = document.getElementById("rsvpModalOverlay");
       var openBtn = document.getElementById("rsvpModalOpen");
@@ -1239,9 +1242,31 @@
       var form = document.getElementById("rsvpForm");
       var nameInput = document.getElementById("rsvpName");
       var phoneInput = document.getElementById("rsvpPhone4");
+      var submitBtn = form ? form.querySelector(".rsvp-submit") : null;
       var lastFocus = null;
 
       if (!modal || !overlay || !openBtn || !closeBtn || !form) return;
+
+      function resetFormAndSegments() {
+        form.reset();
+        modal.querySelectorAll("[data-rsvp-seg]").forEach(function (b) {
+          b.classList.remove("is-active");
+          b.setAttribute("aria-pressed", "false");
+        });
+        [["guest", "groom"], ["attend", "yes"], ["companion", "no"]].forEach(function (pair) {
+          var b = modal.querySelector('[data-rsvp-seg="' + pair[0] + '"][data-value="' + pair[1] + '"]');
+          if (b) {
+            b.classList.add("is-active");
+            b.setAttribute("aria-pressed", "true");
+          }
+        });
+      }
+
+      function finishSuccess() {
+        alert("참석 의사를 전달해 주셔서 감사합니다.");
+        resetFormAndSegments();
+        closeModal();
+      }
 
       function activeSeg(group) {
         var el = modal.querySelector('.rsvp-seg__btn.is-active[data-rsvp-seg="' + group + '"]');
@@ -1314,20 +1339,50 @@
           phoneLast4: digits || null,
         };
         console.log("RSVP", payload);
-        alert("참석 의사를 전달해 주셔서 감사합니다.");
-        form.reset();
-        modal.querySelectorAll("[data-rsvp-seg]").forEach(function (b) {
-          b.classList.remove("is-active");
-          b.setAttribute("aria-pressed", "false");
-        });
-        [["guest", "groom"], ["attend", "yes"], ["companion", "no"]].forEach(function (pair) {
-          var b = modal.querySelector('[data-rsvp-seg="' + pair[0] + '"][data-value="' + pair[1] + '"]');
-          if (b) {
-            b.classList.add("is-active");
-            b.setAttribute("aria-pressed", "true");
-          }
-        });
-        closeModal();
+
+        var url = (typeof RSVP_SHEET_WEBAPP_URL === "string" && RSVP_SHEET_WEBAPP_URL.trim()) || "";
+        if (!url) {
+          finishSuccess();
+          return;
+        }
+
+        var params = new URLSearchParams();
+        params.set("data", JSON.stringify(payload));
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-busy", "true");
+        }
+
+        fetch(url, {
+          method: "POST",
+          body: params.toString(),
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        })
+          .then(function (res) {
+            return res.json().catch(function () {
+              throw new Error("INVALID_JSON");
+            });
+          })
+          .then(function (body) {
+            if (body && body.ok) {
+              finishSuccess();
+            } else {
+              alert(
+                (body && body.message) ||
+                  "저장에 실패했습니다. 잠시 후 다시 시도하거나 문의해 주세요.",
+              );
+            }
+          })
+          .catch(function () {
+            alert("네트워크 오류로 전송하지 못했습니다. 연결을 확인해 주세요.");
+          })
+          .finally(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.removeAttribute("aria-busy");
+            }
+          });
       });
 
       document.addEventListener("keydown", function (e) {
