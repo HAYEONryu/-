@@ -339,6 +339,38 @@
       max-width: 100%;
       min-height: 200px;
     }
+    .location-address-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+    .location-address-row .small {
+      margin: 0;
+    }
+    .btn-copy-address {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border: 0;
+      background: transparent;
+      color: #999;
+      cursor: pointer;
+      border-radius: 6px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .btn-copy-address:hover {
+      color: #666;
+      background: rgba(0, 0, 0, .05);
+    }
+    .btn-copy-address:focus-visible {
+      outline: 2px solid #ebadad;
+      outline-offset: 2px;
+    }
     .btn-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -357,18 +389,101 @@
       color: #444;
     }
     .btn.primary { background: #ebadad; color: #fff; }
-    .account {
-      margin-top: 14px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    .fund-wrap {
+      margin-top: 20px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .account div {
+    .fund-acc {
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+    }
+    .fund-acc:last-child {
+      margin-bottom: 0;
+    }
+    .fund-acc__head {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
       background: #fff;
-      padding: 16px;
-      border-bottom: 1px solid #f0f0f0;
+      border: 0;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      color: #222;
       text-align: left;
-      font-size: 14px;
+    }
+    .fund-acc__chev {
+      color: #b0b0b0;
+      transition: transform .2s ease;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .fund-acc--open .fund-acc__chev {
+      transform: rotate(180deg);
+    }
+    .fund-acc__panel {
+      background: #f8e8e8;
+      padding: 14px 12px 16px;
+    }
+    .fund-acc__panel[hidden] {
+      display: none;
+    }
+    .fund-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 16px 16px;
+      text-align: left;
+    }
+    .fund-card__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 14px;
+    }
+    .fund-card__name {
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .fund-card__acct {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #eee;
+      border-radius: 12px;
+      padding: 12px 12px 12px 14px;
+    }
+    .fund-card__acct-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .fund-card__bank {
+      display: block;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .fund-card__number {
+      display: block;
+      font-family: Suit, ui-sans-serif, system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: #808080;
+      letter-spacing: .02em;
+      word-break: break-all;
+    }
+    .btn-copy-fund {
+      flex-shrink: 0;
+      padding: 6px;
     }
     .footer {
       padding: 18px;
@@ -429,7 +544,15 @@
     <section class="section pink">
       <h2 class="headline">LOCATION</h2>
       <p>채플홀 아벤티움</p>
-      <p class="small">서울 중구 청파로 464 3층</p>
+      <div class="location-address-row">
+        <p class="small" id="venueAddressText">서울 중구 청파로 464 3층</p>
+        <button type="button" class="btn-copy-address" id="copyVenueAddressBtn" aria-label="주소 복사" title="주소 복사">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
       <div class="map">
         <div id="daumRoughmapContainer1774883666557" class="root_daum_roughmap root_daum_roughmap_landing"></div>
       </div>
@@ -481,9 +604,63 @@
       <h2 class="headline" style="font-size:30px;">마음 전하실 곳</h2>
       <p class="small">소중한 토요일, 전국 각지에서 전해주신<br>따뜻한 마음에 진심으로 감사드립니다.</p>
       <p class="small" style="margin-top:12px;">부득이 비대면으로 축하를 전하고자<br>하시는 분들을 위해 계좌번호를 남깁니다.<br>너른 양해를 부탁드립니다.</p>
-      <div class="account">
-        <div>신랑측: 강동현(동현) / 국민 1234-56-789012</div>
-        <div>신부측: 유하연(하연) / 우리 1002-345-678901</div>
+      <div class="fund-wrap">
+        <div class="fund-acc" data-fund-acc>
+          <button type="button" class="fund-acc__head" aria-expanded="false" id="fundHeadGroom">
+            <span>신랑측에게</span>
+            <span class="fund-acc__chev" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="fund-acc__panel" id="fundPanelGroom" hidden>
+            <div class="fund-card">
+              <div class="fund-card__row">
+                <span>신랑</span>
+                <span class="fund-card__name">강동현</span>
+              </div>
+              <div class="fund-card__acct">
+                <div class="fund-card__acct-info" id="fundAcctCopyGroom">
+                  <span class="fund-card__bank">카카오뱅크</span>
+                  <span class="fund-card__number" id="fundAccountGroom">7942-19-73272</span>
+                </div>
+                <button type="button" class="btn-copy-address btn-copy-fund" data-copy-fund-wrap="fundAcctCopyGroom" aria-label="은행·계좌 복사" title="은행·계좌 복사">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fund-acc" data-fund-acc>
+          <button type="button" class="fund-acc__head" aria-expanded="false" id="fundHeadBride">
+            <span>신부측에게</span>
+            <span class="fund-acc__chev" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+          </button>
+          <div class="fund-acc__panel" id="fundPanelBride" hidden>
+            <div class="fund-card">
+              <div class="fund-card__row">
+                <span>신부</span>
+                <span class="fund-card__name">유하연</span>
+              </div>
+              <div class="fund-card__acct">
+                <div class="fund-card__acct-info" id="fundAcctCopyBride">
+                  <span class="fund-card__bank">기업은행</span>
+                  <span class="fund-card__number" id="fundAccountBride">158-113013-01-018</span>
+                </div>
+                <button type="button" class="btn-copy-address btn-copy-fund" data-copy-fund-wrap="fundAcctCopyBride" aria-label="은행·계좌 복사" title="은행·계좌 복사">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -649,6 +826,76 @@
       });
 
       loadGalleryImages();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      function copyText(t) {
+        if (navigator.clipboard && window.isSecureContext) {
+          return navigator.clipboard.writeText(t);
+        }
+        return new Promise(function (resolve, reject) {
+          var ta = document.createElement("textarea");
+          ta.value = t;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            if (document.execCommand("copy")) resolve();
+            else reject(new Error("copy failed"));
+          } catch (e) {
+            reject(e);
+          }
+          document.body.removeChild(ta);
+        });
+      }
+      function bindCopyFeedback(btn, textGetter, failMsg) {
+        btn.addEventListener("click", function () {
+          copyText(textGetter()).then(function () {
+            var prev = btn.getAttribute("aria-label");
+            btn.setAttribute("aria-label", "복사됨");
+            setTimeout(function () {
+              btn.setAttribute("aria-label", prev || "");
+            }, 1500);
+          }).catch(function () {
+            alert(failMsg || "복사에 실패했습니다. 직접 선택해 복사해 주세요.");
+          });
+        });
+      }
+      var venueBtn = document.getElementById("copyVenueAddressBtn");
+      var venueText = document.getElementById("venueAddressText");
+      if (venueBtn && venueText) {
+        bindCopyFeedback(venueBtn, function () {
+          return venueText.textContent.trim();
+        }, "복사에 실패했습니다. 주소를 직접 선택해 복사해 주세요.");
+      }
+      document.querySelectorAll("[data-copy-fund-wrap]").forEach(function (btn) {
+        var wrapId = btn.getAttribute("data-copy-fund-wrap");
+        var wrap = wrapId && document.getElementById(wrapId);
+        if (!wrap) return;
+        bindCopyFeedback(btn, function () {
+          var bankEl = wrap.querySelector(".fund-card__bank");
+          var numEl = wrap.querySelector(".fund-card__number");
+          var bank = bankEl ? bankEl.textContent.trim() : "";
+          var num = numEl ? numEl.textContent.trim() : "";
+          if (bank && num) return bank + " " + num;
+          return bank || num;
+        }, "복사에 실패했습니다. 계좌 정보를 직접 선택해 복사해 주세요.");
+      });
+      document.querySelectorAll("[data-fund-acc]").forEach(function (acc) {
+        var head = acc.querySelector(".fund-acc__head");
+        var panel = acc.querySelector(".fund-acc__panel");
+        if (!head || !panel) return;
+        head.addEventListener("click", function () {
+          var open = acc.classList.toggle("fund-acc--open");
+          head.setAttribute("aria-expanded", open ? "true" : "false");
+          if (open) panel.removeAttribute("hidden");
+          else panel.setAttribute("hidden", "");
+        });
+      });
     })();
   </script>
 
