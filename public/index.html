@@ -10,49 +10,49 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://toourguest.com/cards/20251122">
   <meta name="theme-color" content="#f7dede">
-  <link rel="stylesheet" href="css/tailwind-like.css">
+  <link rel="stylesheet" href="../css/tailwind-like.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: Suit;
-      src: url("fonts/SUIT-Light.woff2") format("woff2");
+      src: url("../fonts/SUIT-Light.woff2") format("woff2");
       font-weight: 300;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/SUIT-Regular.woff2") format("woff2");
+      src: url("../fonts/SUIT-Regular.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/SUIT-Medium.woff2") format("woff2");
+      src: url("../fonts/SUIT-Medium.woff2") format("woff2");
       font-weight: 500;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/SUIT-Bold.woff2") format("woff2");
+      src: url("../fonts/SUIT-Bold.woff2") format("woff2");
       font-weight: 700;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: Sparkle;
-      src: url("fonts/Sparkle.woff2") format("woff2");
+      src: url("../fonts/Sparkle.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: KoreanHand;
-      src: url("fonts/Cafe24SsurroundAir-v1.1.woff2") format("woff2");
+      src: url("../fonts/Cafe24SsurroundAir-v1.1.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -139,7 +139,7 @@
       min-height: 620px;
       background:
         linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.22)),
-        url("img/image1.jpg");
+        url("../img/image1.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -389,6 +389,24 @@
       color: #444;
     }
     .btn.primary { background: #ebadad; color: #fff; }
+    .btn.primary.btn-copy-invite-url {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fff44f;
+      color: #371d1e;
+      font-weight: 700;
+    }
+    .btn.primary.btn-copy-invite-url:hover {
+      background: #ede94a;
+      color: #371d1e;
+    }
+    .btn.primary.btn-copy-invite-url .btn-copy-invite-url__icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+    }
     .fund-wrap {
       margin-top: 20px;
       max-width: 420px;
@@ -490,6 +508,14 @@
       background: #fff;
       display: grid;
       gap: 10px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .footer-copy {
+      margin: 6px 0 0;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
     }
     @media (max-width: 360px) {
       .hero-title { font-size: 42px; }
@@ -509,7 +535,7 @@
       </div>
     </section>
     <div style="text-align:center; margin-top: 40px; margin-bottom: -6px; background:#fff;">
-      <img src="img/함께걷기.png" alt="함께걷기" style="display:inline-block; width:50%; max-width:150px; height:auto;">
+      <img src="../img/함께걷기.png" alt="함께걷기" style="display:inline-block; width:50%; max-width:150px; height:auto;">
     </div>
     <section class="section">
       <p class="small">살아가며 평생의 인연을 만나는 것,</p>
@@ -673,8 +699,14 @@
     </section>
 
     <footer class="footer">
-      <a class="btn" href="#">카카오톡으로 청첩장 전하기</a>
-      <a class="btn primary" href="#">청첩장 주소 복사하기</a>
+      <a class="btn primary btn-copy-invite-url" href="#">
+        <span>청첩장 주소 복사하기</span>
+        <svg class="btn-copy-invite-url__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </a>
+      <p class="footer-copy">@Copyright 유하연</p>
     </footer>
   </main>
 
@@ -718,14 +750,14 @@
 
       async function loadGalleryImages() {
         var preferredOrdered = [
-          "img/us/제시1.jpg",
-          "img/us/제시2.jpg",
-          "img/us/제시3.jpg",
-          "img/us/제시4.jpg",
-          "img/us/제시5.jpg",
-          "img/us/제시6.jpg",
-          "img/us/제시7.jpg",
-          "img/us/제시8.jpg",
+          "../img/us/제시1.jpg",
+          "../img/us/제시2.jpg",
+          "../img/us/제시3.jpg",
+          "../img/us/제시4.jpg",
+          "../img/us/제시5.jpg",
+          "../img/us/제시6.jpg",
+          "../img/us/제시7.jpg",
+          "../img/us/제시8.jpg",
         ];
         var exts = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
         var candidates = [];
@@ -733,10 +765,10 @@
         var j;
         for (i = 1; i <= 80; i += 1) {
           for (j = 0; j < exts.length; j += 1) {
-            candidates.push("img/us/" + i + "." + exts[j]);
+            candidates.push("../img/us/" + i + "." + exts[j]);
           }
         }
-        candidates.push("img/us/main.jpg", "img/us/main.png");
+        candidates.push("../img/us/main.jpg", "../img/us/main.png");
 
         var checked = await Promise.all(candidates.map(testImage));
         var rest = checked.filter(function (p) { return !!p; });
