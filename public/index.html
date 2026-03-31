@@ -6,17 +6,22 @@
   <meta name="color-scheme" content="light only">
   <title>강동현 ♥ 유하연 결혼합니다.</title>
   <meta name="description" content="2026년 7월 11일 토요일 오후 6시 30분, 아벤티움">
+  <link rel="canonical" href="https://donghahappyday.vercel.app/">
+  <meta property="og:url" content="https://donghahappyday.vercel.app/">
   <meta property="og:title" content="강동현 ♥ 유하연 결혼합니다.">
   <meta property="og:description" content="2026년 7월 11일 토요일 오후 6시 30분, 아벤티움">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
-  <meta property="og:image" content="/img/opening.png">
+  <meta property="og:image" content="https://donghahappyday.vercel.app/img/opening.png">
+  <meta property="og:image:secure_url" content="https://donghahappyday.vercel.app/img/opening.png">
   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1856">
+  <meta property="og:image:height" content="2475">
   <meta property="og:image:alt" content="강동현 ♥ 유하연 웨딩 청첩장">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="강동현 ♥ 유하연 결혼합니다.">
   <meta name="twitter:description" content="2026년 7월 11일 토요일 오후 6시 30분, 아벤티움">
-  <meta name="twitter:image" content="/img/opening.png">
+  <meta name="twitter:image" content="https://donghahappyday.vercel.app/img/opening.png">
   <meta name="theme-color" content="#f7dede" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#f7dede" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="/css/tailwind-like.css">
@@ -74,31 +79,6 @@
         U+AC00-D7AF;
     }
 
-    :root {
-      --white: #ffffff;
-      --text-color-suit: #4b3f3f;
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
-      --radius: 0.5rem;
-    }
-
     html {
       color-scheme: light only;
       background-color: #f7dede;
@@ -131,8 +111,6 @@
       color: rgb(255 255 255);
     }
 
-    * { box-sizing: border-box; }
-    * { border-color: hsl(var(--border)); }
     body {
       margin: 0;
       font-family: KoreanHand, Sparkle, serif;
@@ -615,179 +593,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* RSVP 참석 의사 모달 */
-    .rsvp-modal {
-      font-family: KoreanHand, Pretendard, "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
-      position: fixed;
-      inset: 0;
-      z-index: 10050;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-    .rsvp-modal.is-open {
-      display: flex;
-    }
-    .rsvp-modal__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(92, 68, 58, 0.38);
-    }
-    .rsvp-modal__dialog {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 32rem;
-      max-height: min(86vh, 640px);
-      overflow: auto;
-      margin: 0;
-      padding: 40px 22px 32px;
-      background: #f8f8f8;
-      border-radius: 10px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-    }
-    .rsvp-modal__dialog:focus { outline: none; }
-    .rsvp-modal__close {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border: 0;
-      border-radius: 6px;
-      background: transparent;
-      color: #6b6b6b;
-      cursor: pointer;
-      opacity: 0.85;
-    }
-    .rsvp-modal__close:hover { opacity: 1; }
-    .rsvp-modal__close:focus-visible {
-      outline: 2px solid #ebadad;
-      outline-offset: 2px;
-    }
-    .rsvp-modal__title {
-      margin: 0;
-      text-align: center;
-      font-size: 1.45rem;
-      font-weight: 400;
-      line-height: 1.35;
-      letter-spacing: -0.02em;
-      color: rgba(40, 40, 40, 0.92);
-    }
-    .rsvp-modal__lead {
-      margin: 0;
-      padding: 12px 12px 0;
-      text-align: center;
-      font-size: 0.875rem;
-      font-weight: 400;
-      line-height: 1.55;
-      color: #b47b7b;
-    }
-    .rsvp-modal__form {
-      padding: 22px 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .rsvp-field__label {
-      display: flex;
-      align-items: flex-start;
-      gap: 4px;
-      margin: 0 0 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #666;
-      line-height: 1.3;
-    }
-    .rsvp-field__req {
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .rsvp-seg {
-      display: flex;
-      gap: 8px;
-    }
-    .rsvp-seg__btn {
-      flex: 1;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      border-radius: 8px;
-      font: inherit;
-    }
-    .rsvp-seg__btn:focus-visible {
-      outline: 2px solid #ebadad;
-      outline-offset: 2px;
-    }
-    .rsvp-seg__face {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      font-size: 0.9375rem;
-      background: #fff;
-      color: #999;
-    }
-    .rsvp-seg__btn.is-active .rsvp-seg__face {
-      background: #ebadad;
-      color: #fff;
-    }
-    .rsvp-input {
-      display: block;
-      width: 100%;
-      height: 48px;
-      margin: 0;
-      padding: 0 14px;
-      border: 0;
-      border-radius: 8px;
-      font: inherit;
-      font-size: 0.875rem;
-      background: #fff;
-      color: #333;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    .rsvp-input::placeholder { color: #999; }
-    .rsvp-input:focus-visible {
-      outline: 2px solid #ebadad;
-      outline-offset: 2px;
-    }
-    .rsvp-submit {
-      width: 100%;
-      height: 48px;
-      margin-top: 4px;
-      padding: 0;
-      border: 0;
-      border-radius: 8px;
-      background: #ebadad;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(235, 173, 173, 0.45);
-    }
-    .rsvp-submit:hover { filter: brightness(0.97); }
-    .rsvp-submit:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
-    .rsvp-submit:focus-visible {
-      outline: 2px solid #b47b7b;
-      outline-offset: 3px;
-    }
-
     /* Envelope Intro Section Base */
     .envelope-intro {
       position: fixed;
@@ -795,7 +600,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: var(--white);
+      background-color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -829,15 +634,15 @@
       z-index: 1;
     }
 
-    /* 오프닝 이미지: 뚜껑·편지 연출 후 최상단에서 페이드인 */
+    /* 오프닝 이미지: 뚜껑·편지 연출 후 편지 위에 겹쳐 노출 */
     .opening-image {
       position: absolute;
       top: 70%;
       left: 50%;
-      transform: translate(-50%, -50%);
       width: 80%;
       height: auto;
       object-fit: contain;
+      transform: translate(-50%, -50%);
       z-index: 10;
       border-radius: 5px;
       opacity: 0;
@@ -874,7 +679,7 @@
       position: absolute;
       width: 90%;
       height: 95%;
-      background-color: var(--white);
+      background-color: #fff;
       bottom: 5px;
       left: 5%;
       z-index: 2;
@@ -891,7 +696,7 @@
     /* 편지 내부 텍스트 스타일 */
     .letter-content {
       text-align: center;
-      color: var(--text-color-suit);
+      color: #4b3f3f;
       font-family: Suit, Pretendard, sans-serif;
     }
 
@@ -992,7 +797,7 @@
       </div>
       <div class="envelope-front"></div>
       <div class="envelope-flap"></div>
-      <img class="opening-image" src="/img/opening.png" alt="" width="240" height="160" decoding="async">
+      <img class="opening-image" src="/img/opening.png" alt="" decoding="async">
     </div>
   </div>
 
@@ -1146,7 +951,7 @@
               <div class="fund-card__acct">
                 <div class="fund-card__acct-info" id="fundAcctCopyGroom">
                   <span class="fund-card__bank">카카오뱅크</span>
-                  <span class="fund-card__number" id="fundAccountGroom">7942-19-73272</span>
+                  <span class="fund-card__number">7942-19-73272</span>
                 </div>
                 <button type="button" class="btn-copy-address btn-copy-fund" data-copy-fund-wrap="fundAcctCopyGroom" aria-label="은행·계좌 복사" title="은행·계좌 복사">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1174,7 +979,7 @@
               <div class="fund-card__acct">
                 <div class="fund-card__acct-info" id="fundAcctCopyBride">
                   <span class="fund-card__bank">기업은행</span>
-                  <span class="fund-card__number" id="fundAccountBride">158-113013-01-018</span>
+                  <span class="fund-card__number">158-113013-01-018</span>
                 </div>
                 <button type="button" class="btn-copy-address btn-copy-fund" data-copy-fund-wrap="fundAcctCopyBride" aria-label="은행·계좌 복사" title="은행·계좌 복사">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1598,169 +1403,6 @@
           });
         });
       }
-    })();
-  </script>
-
-  <script>
-    (function () {
-      /** 구글 앱스 스크립트 웹앱 배포 URL (.../exec). 비우면 시트 전송 없이 로컬만 동작 */
-      var RSVP_SHEET_WEBAPP_URL = "";
-
-      var modal = document.getElementById("rsvpModal");
-      var overlay = document.getElementById("rsvpModalOverlay");
-      var openBtn = document.getElementById("rsvpModalOpen");
-      var closeBtn = document.getElementById("rsvpModalClose");
-      var form = document.getElementById("rsvpForm");
-      var nameInput = document.getElementById("rsvpName");
-      var phoneInput = document.getElementById("rsvpPhone4");
-      var submitBtn = form ? form.querySelector(".rsvp-submit") : null;
-      var lastFocus = null;
-
-      if (!modal || !overlay || !openBtn || !closeBtn || !form) return;
-
-      function resetFormAndSegments() {
-        form.reset();
-        modal.querySelectorAll("[data-rsvp-seg]").forEach(function (b) {
-          b.classList.remove("is-active");
-          b.setAttribute("aria-pressed", "false");
-        });
-        [["guest", "groom"], ["attend", "yes"], ["companion", "no"]].forEach(function (pair) {
-          var b = modal.querySelector('[data-rsvp-seg="' + pair[0] + '"][data-value="' + pair[1] + '"]');
-          if (b) {
-            b.classList.add("is-active");
-            b.setAttribute("aria-pressed", "true");
-          }
-        });
-      }
-
-      function finishSuccess() {
-        alert("참석 의사를 전달해 주셔서 감사합니다.");
-        resetFormAndSegments();
-        closeModal();
-      }
-
-      function activeSeg(group) {
-        var el = modal.querySelector('.rsvp-seg__btn.is-active[data-rsvp-seg="' + group + '"]');
-        return el ? el.getAttribute("data-value") : "";
-      }
-
-      function openModal() {
-        lastFocus = document.activeElement;
-        modal.classList.add("is-open");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        if (nameInput) nameInput.focus();
-        else closeBtn.focus();
-      }
-
-      function closeModal() {
-        modal.classList.remove("is-open");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        if (lastFocus && typeof lastFocus.focus === "function") {
-          lastFocus.focus();
-        }
-      }
-
-      openBtn.addEventListener("click", function () {
-        openModal();
-      });
-
-      closeBtn.addEventListener("click", closeModal);
-
-      overlay.addEventListener("click", closeModal);
-
-      modal.querySelectorAll("[data-rsvp-seg]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var key = btn.getAttribute("data-rsvp-seg");
-          modal.querySelectorAll('[data-rsvp-seg="' + key + '"]').forEach(function (b) {
-            b.classList.remove("is-active");
-            b.setAttribute("aria-pressed", "false");
-          });
-          btn.classList.add("is-active");
-          btn.setAttribute("aria-pressed", "true");
-        });
-      });
-
-      if (phoneInput) {
-        phoneInput.addEventListener("input", function () {
-          phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 4);
-        });
-      }
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var name = (nameInput && nameInput.value) ? nameInput.value.trim() : "";
-        if (!name) {
-          alert("성함을 입력해 주세요.");
-          if (nameInput) nameInput.focus();
-          return;
-        }
-        var digits = phoneInput ? phoneInput.value.replace(/\D/g, "") : "";
-        if (digits.length > 0 && digits.length !== 4) {
-          alert("핸드폰 번호 뒤 4자리를 입력해 주세요.");
-          phoneInput.focus();
-          return;
-        }
-        var payload = {
-          guest: activeSeg("guest"),
-          attend: activeSeg("attend"),
-          name: name,
-          companion: activeSeg("companion"),
-          phoneLast4: digits || null,
-        };
-        console.log("RSVP", payload);
-
-        var url = (typeof RSVP_SHEET_WEBAPP_URL === "string" && RSVP_SHEET_WEBAPP_URL.trim()) || "";
-        if (!url) {
-          finishSuccess();
-          return;
-        }
-
-        var params = new URLSearchParams();
-        params.set("data", JSON.stringify(payload));
-
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.setAttribute("aria-busy", "true");
-        }
-
-        fetch(url, {
-          method: "POST",
-          body: params.toString(),
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-        })
-          .then(function (res) {
-            return res.json().catch(function () {
-              throw new Error("INVALID_JSON");
-            });
-          })
-          .then(function (body) {
-            if (body && body.ok) {
-              finishSuccess();
-            } else {
-              alert(
-                (body && body.message) ||
-                  "저장에 실패했습니다. 잠시 후 다시 시도하거나 문의해 주세요.",
-              );
-            }
-          })
-          .catch(function () {
-            alert("네트워크 오류로 전송하지 못했습니다. 연결을 확인해 주세요.");
-          })
-          .finally(function () {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.removeAttribute("aria-busy");
-            }
-          });
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (e.key !== "Escape") return;
-        if (!modal.classList.contains("is-open")) return;
-        closeModal();
-      });
     })();
   </script>
 
