@@ -92,6 +92,8 @@
     @media (prefers-color-scheme: dark) {
       :root {
         color-scheme: light only;
+
+        /* Dark mode should render identical to light mode */
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
         --card: 0 0% 100%;
@@ -112,6 +114,42 @@
         --input: 214.3 31.8% 91.4%;
         --ring: 222.2 84% 4.9%;
       }
+
+      html {
+        color-scheme: light only;
+        background-color: #f7dede;
+        color: #111;
+      }
+
+      body {
+        color-scheme: light only;
+        background: #f7dede !important;
+        color: #111 !important;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        color-scheme: light only;
+      }
+
+      .wrap {
+        background: #fff;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+      }
+
+      .section { background: transparent; }
+      .section.dark { background: #f3f3f3; }
+      .section.pink { background: #fbefef; }
+      .section.rose { background: #f4d2d2; }
+
+      .small { color: #666; }
+
+      .envelope-intro {
+        background: linear-gradient(165deg, #fff6f6 0%, #ffecec 45%, #ffe0e0 100%);
+      }
+      .envelope-intro__tagline { color: #c55a5a; }
     }
 
     html {
