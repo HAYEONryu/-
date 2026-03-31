@@ -9,7 +9,8 @@
   <meta property="og:title" content="강동현 ♥ 유하연 결혼합니다.">
   <meta property="og:description" content="2026년 7월 11일 토요일 오후 6시 30분, 아벤티움">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#f7dede">
+  <meta name="theme-color" content="#f7dede" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#f7dede" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="/css/tailwind-like.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,8 +89,35 @@
       --radius: 0.5rem;
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: light only;
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+      }
+    }
+
     html {
       color-scheme: light only;
+      background-color: #f7dede;
+      color: #111;
       line-height: 1.5;
       -webkit-text-size-adjust: 100%;
       -moz-tab-size: 4;
@@ -130,6 +158,12 @@
       display: flex;
       justify-content: center;
       padding: 0 0 24px;
+    }
+    input,
+    textarea,
+    select,
+    button {
+      color-scheme: light only;
     }
     .wrap {
       width: 100%;
