@@ -573,7 +573,7 @@
     }
     .footer {
       padding: 18px;
-      background: #fff;
+      background: #fbefef;
       display: grid;
       gap: 10px;
       margin-top: 30px;
@@ -821,21 +821,24 @@
       z-index: 1;
     }
 
-    /* 오프닝 그래픽: 봉투 위·편지 아래, 터치 비대상 */
-    .envelope-opening-art {
+    /* 오프닝 이미지: 뚜껑·편지 연출 후 최상단에서 페이드인 */
+    .opening-image {
       position: absolute;
+      top: 70%;
       left: 50%;
-      top: 50%;
       transform: translate(-50%, -50%);
-      max-width: 88%;
-      max-height: 88%;
-      width: auto;
+      width: 80%;
       height: auto;
       object-fit: contain;
-      z-index: 2;
+      z-index: 10;
+      border-radius: 5px;
+      opacity: 0;
+      visibility: hidden;
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
+      animation: fadeInOpening 1s ease-in-out forwards;
+      animation-delay: 1.0s;
     }
 
     /* 봉투 앞면 (V자 모양 절개) */
@@ -919,6 +922,19 @@
       }
     }
 
+    @keyframes fadeInOpening {
+      0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, calc(-50% + 76px));
+      }
+      100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, calc(-50% + 58px));
+      }
+    }
+
     /* 스크롤 시 블록이 서서히 나타남 */
     .scroll-reveal {
       opacity: 0;
@@ -955,7 +971,6 @@
   <div class="envelope-intro">
     <div class="envelope-wrapper">
       <div class="envelope-back"></div>
-      <img class="envelope-opening-art" src="/img/opening.png" alt="" width="240" height="160" decoding="async">
       <div class="letter">
         <div class="letter-content">
           <p class="letter-date-suit">2026. 07. 11</p>
@@ -969,6 +984,7 @@
       </div>
       <div class="envelope-front"></div>
       <div class="envelope-flap"></div>
+      <img class="opening-image" src="/img/opening.png" alt="" width="240" height="160" decoding="async">
     </div>
   </div>
 
@@ -1165,6 +1181,23 @@
       </div>
     </section>
 
+    <section class="section">
+      <h2 class="headline">사진 업로드</h2>
+      <p class="small">소중한 발걸음으로 축하해 주셔서 감사합니다.</p>
+      <p class="small">오늘의 행복한 순간을 담은 사진을 </p>
+      <p class="small">아래 QR을 통해 업로드해 주세요.</p>
+      <p class="small">한 분 한 분의 정성 어린 사진들이 저희 부부에게 평생 잊지 못할 선물이 될 것입니다.</p>
+      <p style="margin-top:28px;">신랑 강동현 · 신부 유하연</p>
+      
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:40px; margin-bottom:-6px; background:#fff;">
+        <a href="https://photos.app.goo.gl/NWA5GszyPeKbbSoo9" target="_blank" rel="noopener noreferrer" aria-label="Google 포토 앨범 2026/07/11 하연&동현 Happyday 열기" style="display:block; line-height:0;">
+          <img src="/img/photoQR.png" alt="" style="display:block; width:auto; max-width:160px; height:auto;">
+        </a>
+        <p class="small">QR 클릭 시 업로드 가능:)</p>
+      </div>    
+    </section>
+
+
     <!-- RSVP 섹션 비활성화
     <section class="section rose">
       <h2 class="headline">RSVP</h2>
@@ -1175,7 +1208,7 @@
     </section>
     -->
 
-    <footer class="footer">
+    <footer class="footer" >
       <a class="btn primary btn-copy-invite-url" href="#">
         <span>청첩장 주소 복사하기</span>
         <svg class="btn-copy-invite-url__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
