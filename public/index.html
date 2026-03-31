@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/css/tailwind-like.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     @font-face {
@@ -33,7 +33,7 @@
     }
     @font-face {
       font-family: Suit;
-      src: url("fonts/subset-SUIT-Regular.woff2") format("woff2");
+      src: url("/fonts/subset-SUIT-Regular.woff2") format("woff2");
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -67,6 +67,8 @@
     }
 
     :root {
+      --white: #ffffff;
+      --text-color-suit: #4b3f3f;
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
       --card: 0 0% 100%;
@@ -87,130 +89,6 @@
       --input: 214.3 31.8% 91.4%;
       --ring: 222.2 84% 4.9%;
       --radius: 0.5rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: light only;
-
-        /* Dark mode should render identical to light mode */
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-      }
-
-      html {
-        color-scheme: light only;
-        background-color: #f7dede;
-        color: #111;
-      }
-
-      body {
-        color-scheme: light only;
-        background: #f7dede !important;
-        color: #111 !important;
-      }
-
-      input,
-      textarea,
-      select,
-      button {
-        color-scheme: light only;
-      }
-
-      .wrap {
-        background: #fff;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
-      }
-
-      .section { background: transparent; }
-      .section.dark { background: #f3f3f3; }
-      .section.pink { background: #fbefef; }
-      .section.rose { background: #f4d2d2; }
-
-      .small { color: #666; }
-
-      .envelope-intro {
-        background: linear-gradient(165deg, #fff6f6 0%, #ffecec 45%, #ffe0e0 100%);
-      }
-      .envelope-intro__tagline { color: #c55a5a; }
-
-      /* Duplicate light palette rules explicitly (Samsung Internet dark handling) */
-      .calendar {
-        background: #fff;
-        box-shadow: 0 8px 18px rgba(0,0,0,.08);
-      }
-      .calendar-grid > div { color: #111; }
-      .day-love { color: #fff !important; }
-      .day-love::before { color: #b77b7b; }
-
-      .ph {
-        background: linear-gradient(145deg, #f1d6d6, #ddb2b2);
-        color: #8b5f5f;
-      }
-      .gallery-item { background: #f6f1f1; }
-
-      .viewer { background: rgba(0, 0, 0, .55); }
-      .viewer-panel { background: #e9e9e9; }
-      .viewer-close { background: transparent; color: #8f8f8f; }
-      .viewer-stage,
-      .viewer-stage img { background: #fff; }
-      .viewer-bottom { color: #707070; }
-      .viewer-nav { background: transparent; color: #ababab; }
-
-      .map { background: #eee; border-color: #ddd; }
-      .btn-copy-address { background: transparent; color: #999; }
-      .btn-copy-address:hover { color: #666; background: rgba(0, 0, 0, .05); }
-
-      .btn { background: #fff; color: #444; }
-      .btn.primary { background: #ebadad; color: #fff; }
-      .btn.primary.btn-copy-invite-url { background: #fff44f; color: #371d1e; }
-      .btn.primary.btn-copy-invite-url:hover { background: #ede94a; color: #371d1e; }
-
-      .fund-acc { box-shadow: 0 4px 14px rgba(0, 0, 0, .06); }
-      .fund-acc__head { background: #fff; color: #222; }
-      .fund-acc__chev { color: #b0b0b0; }
-      .fund-acc__panel { background: #f8e8e8; }
-      .fund-card { background: #fff; }
-      .fund-card__row { color: #333; }
-      .fund-card__acct { background: #eee; }
-      .fund-card__bank { color: #888; }
-      .fund-card__number { color: #808080; }
-
-      .footer { background: #fff; }
-      .footer-copy { color: #999; }
-
-      .rsvp-modal__overlay { background: rgba(92, 68, 58, 0.38); }
-      .rsvp-modal__dialog {
-        background: #f8f8f8;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-      }
-      .rsvp-modal__close { background: transparent; color: #6b6b6b; }
-      .rsvp-modal__title { color: rgba(40, 40, 40, 0.92); }
-      .rsvp-modal__lead { color: #b47b7b; }
-      .rsvp-field__label { color: #666; }
-      .rsvp-seg__btn { background: transparent; }
-      .rsvp-seg__face { background: #fff; color: #999; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
-      .rsvp-seg__btn.is-active .rsvp-seg__face { background: #ebadad; color: #fff; }
-      .rsvp-input { background: #fff; color: #333; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
-      .rsvp-input::placeholder { color: #999; }
-      .rsvp-submit { background: #ebadad; color: #fff; box-shadow: 0 2px 10px rgba(235, 173, 173, 0.45); }
     }
 
     html {
@@ -256,7 +134,7 @@
       -webkit-font-smoothing: antialiased;
       display: flex;
       justify-content: center;
-      padding: 0 0 24px;
+      padding: 0 0 calc(24px + env(safe-area-inset-bottom, 0px));
     }
     input,
     textarea,
@@ -330,6 +208,23 @@
       margin: 0 0 26px;
     }
     .small { font-size: 14px; color: #666; }
+    .info-text,
+    .location-detail,
+    .location-detail p,
+    .location-detail .small {
+      font-family: Pretendard, Suit, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0;
+      word-break: keep-all;
+    }
+    .location-subtitle {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #333;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      font-family: Pretendard, Suit, ui-sans-serif, system-ui, sans-serif;
+    }
     .calendar {
       margin: 26px auto;
       max-width: 320px;
@@ -476,6 +371,21 @@
       overflow: hidden;
       max-width: 100%;
       min-height: 360px;
+      position: relative;
+    }
+    .map-touch-guard {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      border: 0;
+      background: rgba(255, 255, 255, 0.52);
+      color: #5d4c4c;
+      font-family: Pretendard, Suit, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+    .map.map--active .map-touch-guard {
+      display: none;
     }
     /* 카카오 지도 퍼가기: 루트 폭을 화면에 맞춤 */
     .map .root_daum_roughmap_landing,
@@ -676,6 +586,26 @@
       font-size: 14px;
       color: #999;
     }
+    .copy-toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      transform: translateX(-50%) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      background: rgba(40, 30, 30, 0.88);
+      color: #fff;
+      font-family: Pretendard, Suit, ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 100200;
+    }
+    .copy-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* RSVP 참석 의사 모달 */
     .rsvp-modal {
@@ -850,280 +780,142 @@
       outline-offset: 3px;
     }
 
-    /* 오프닝: 봉투에서 편지 꺼내기 */
-    body.envelope-intro-active {
-      overflow: hidden;
-    }
+    /* Envelope Intro Section Base */
     .envelope-intro {
       position: fixed;
-      inset: 0;
-      z-index: 100100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 20px 80px;
-      box-sizing: border-box;
-      background: linear-gradient(165deg, #fff6f6 0%, #ffecec 45%, #ffe0e0 100%);
-      font-family: KoreanHand, Sparkle, serif;
-      transition: opacity 0.55s ease, visibility 0.55s ease;
-    }
-    .envelope-intro.is-dismissed {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .envelope-intro__tagline {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-      color: #c55a5a;
-      letter-spacing: 0.04em;
-    }
-    .envelope-intro__stage {
-      position: relative;
-      width: clamp(312px, 88vw, 408px);
-      height: 387px;
-      margin-top: 8px;
-      perspective: 1100px;
-      perspective-origin: 50% 42%;
-      transform-style: preserve-3d;
-    }
-    .envelope-intro__base {
-      position: absolute;
+      top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      height: 62%;
-      border-radius: 0 0 12px 12px;
-      background: linear-gradient(180deg, #ffc9c9 0%, #ffb2b2 48%, #ffa3a3 100%);
-      box-shadow: 0 14px 32px rgba(220, 100, 100, 0.38);
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    /* 전체 봉투 컨테이너 */
+    .envelope-wrapper {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+    }
+
+    /* 봉투 공통 스타일 */
+    .envelope-back,
+    .envelope-front,
+    .envelope-flap {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    /* 봉투 뒷면 (가장 아래) */
+    .envelope-back {
+      background-color: #f4f1ea;
+      border-radius: 5px;
       z-index: 1;
     }
-    .envelope-intro__inner-fold {
+
+    /* 오프닝 그래픽: 봉투 위·편지 아래, 터치 비대상 */
+    .envelope-opening-art {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 17%;
-      height: 52%;
-      background: linear-gradient(180deg, #ff9e9e 0%, #ff9090 100%);
-      clip-path: polygon(0 0, 50% 90%, 100% 0);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 88%;
+      max-height: 88%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       z-index: 2;
-      opacity: 0.96;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
-    .envelope-intro__lift {
-      position: absolute;
-      left: 9%;
-      right: 9%;
-      bottom: 26%;
-      height: 304px;
+
+    /* 봉투 앞면 (V자 모양 절개) */
+    .envelope-front {
+      background-color: #fbfaf8;
       z-index: 3;
-      pointer-events: none;
-      animation: env-letter-out 1.08s cubic-bezier(0.25, 0.9, 0.35, 1) 0.82s both;
+      border-radius: 5px;
+      clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03) inset;
     }
-    .envelope-intro__letter {
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      top: 14px;
-      bottom: 14px;
+
+    /* 봉투 뚜껑 (열리는 부분) */
+    .envelope-flap {
+      background-color: #fbfaf8;
       z-index: 4;
-      opacity: 1;
-      border-radius: 6px;
-      background: linear-gradient(180deg, #fffefb 0%, #fff7fb 100%);
-      box-shadow: 0 4px 20px rgba(200, 90, 120, 0.18);
+      border-radius: 5px 5px 0 0;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      transform-origin: top center;
+      animation: openFlap 1s ease-in-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    /* 내부 편지 */
+    .letter {
+      position: absolute;
+      width: 90%;
+      height: 95%;
+      background-color: var(--white);
+      bottom: 5px;
+      left: 5%;
+      z-index: 2;
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 16px;
-      text-align: center;
-      box-sizing: border-box;
-      border: 1px solid rgba(255, 158, 188, 0.55);
-    }
-    .envelope-intro__decor {
-      position: absolute;
-      z-index: 6;
+      align-items: center;
       opacity: 0;
-      pointer-events: none;
+      animation: slideUpLetter 0.8s ease-out forwards;
+      animation-delay: 1.3s;
     }
-    .envelope-intro__decor--heart {
-      color: #e84d7a;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-      line-height: 1;
-      animation: env-decor-bloom 0.8s cubic-bezier(0.34, 1.25, 0.64, 1) both;
+
+    /* 편지 내부 텍스트 스타일 */
+    .letter-content {
+      text-align: center;
+      color: var(--text-color-suit);
+      font-family: Suit, Pretendard, sans-serif;
     }
-    .envelope-intro__decor--heart-sm {
-      font-size: 1rem;
-      animation-delay: 0.78s;
+
+    .letter-date-suit { font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 5px; }
+    .letter-day-suit { font-size: 1rem; opacity: 0.8; margin-bottom: 15px; }
+    .letter-names-suit { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .letter-names-suit .and { font-weight: 300; opacity: 0.7; font-size: 1rem; }
+
+    /* 봉투 전체 사라지는 애니메이션 (JavaScript에서 클래스 추가 시 작동) */
+    .envelope-intro.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease, visibility 1s;
     }
-    .envelope-intro__decor--heart-md {
-      font-size: 1.35rem;
-      animation-delay: 0.84s;
-    }
-    .envelope-intro__decor--heart-lg {
-      font-size: 1.75rem;
-      animation-delay: 0.92s;
-    }
-    .envelope-intro__decor--h-tl {
-      left: -4%;
-      top: 10%;
-    }
-    .envelope-intro__decor--h-tr {
-      right: -2%;
-      top: 6%;
-    }
-    .envelope-intro__decor--h-bl {
-      left: -6%;
-      bottom: 14%;
-    }
-    .envelope-intro__decor--h-br {
-      right: -5%;
-      bottom: 18%;
-    }
-    .envelope-intro__decor--h-tc {
-      left: 50%;
-      top: -10%;
-      transform: translateX(-50%);
-      animation-name: env-decor-bloom-center;
-      animation-delay: 0.88s;
-    }
-    .envelope-intro__decor--flower {
-      width: 34px;
-      height: 34px;
-      animation: env-decor-bloom 0.8s cubic-bezier(0.34, 1.25, 0.64, 1) both;
-    }
-    .envelope-intro__decor--f-ml {
-      left: -10%;
-      top: 38%;
-      animation-delay: 0.82s;
-    }
-    .envelope-intro__decor--f-mr {
-      right: -10%;
-      top: 42%;
-      animation-delay: 0.9s;
-    }
-    .envelope-intro__decor--f-bc {
-      left: 50%;
-      bottom: -8%;
-      transform: translateX(-50%);
-      animation-name: env-decor-bloom-center;
-      animation-delay: 1s;
-    }
-    @keyframes env-decor-bloom {
-      from {
-        opacity: 0;
-        transform: scale(0.15);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    @keyframes env-decor-bloom-center {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) scale(0.15);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-      }
-    }
-    .envelope-intro__letter-line {
-      font-size: 1.1rem;
-      color: #5c3d39;
-      letter-spacing: 0.06em;
-    }
-    .envelope-intro__letter-sub {
-      font-size: 1.7rem;
-      color: #b87878;
-    }
-    .envelope-intro__flap {
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      width: calc(100% + 4px);
-      height: calc(62% + 6px);
-      background: linear-gradient(180deg, #ffe5e5 0%, #ffd4d4 35%, #ffb2b2 100%);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      transform-origin: 50% 0;
-      z-index: 4;
-      box-shadow: 0 4px 16px rgba(210, 95, 95, 0.28);
-      transform-style: flat;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      animation: env-flap-open 1.14s cubic-bezier(0.28, 0.78, 0.32, 1) 0.16s forwards;
-    }
-    @keyframes env-flap-open {
+
+    @keyframes openFlap {
       0% {
-        opacity: 1;
-        visibility: visible;
-        transform: rotateX(0deg) translateY(1px);
-        box-shadow: 0 4px 16px rgba(210, 95, 95, 0.28);
-      }
-      18% {
-        opacity: 1;
-        transform: rotateX(-7deg) translateY(1px);
-      }
-      38% {
-        opacity: 1;
-        transform: rotateX(-32deg) translateY(0);
-        box-shadow: 0 8px 22px rgba(210, 95, 95, 0.22);
-      }
-      58% {
-        opacity: 1;
-        transform: rotateX(-68deg) translateY(0);
-        box-shadow: 0 8px 18px rgba(200, 85, 85, 0.14);
-      }
-      74% {
-        opacity: 0.35;
-        transform: rotateX(-88deg) translateY(0);
-      }
-      88% {
-        opacity: 0;
-        transform: rotateX(-98deg) translateY(0);
-        box-shadow: none;
+        transform: rotateX(0deg);
+        z-index: 4;
       }
       100% {
-        opacity: 0;
-        visibility: hidden;
-        transform: rotateX(-105deg) translateY(0);
-        box-shadow: none;
+        transform: rotateX(180deg);
+        z-index: 1;
+        background-color: #ededed;
       }
     }
-    @keyframes env-letter-out {
-      from {
-        transform: translateY(40%) scale(0.93);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-38%) scale(1);
-        opacity: 1;
-      }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .envelope-intro__flap,
-      .envelope-intro__lift {
-        animation: none;
-      }
-      .envelope-intro__lift {
-        transform: translateY(-38%);
-        opacity: 1;
-      }
-      .envelope-intro__flap {
+
+    @keyframes slideUpLetter {
+      0% {
+        transform: translateY(50px);
         opacity: 0;
-        visibility: hidden;
-        transform: rotateX(0deg);
       }
-      .envelope-intro__decor {
-        animation: none !important;
+      100% {
+        transform: translateY(-130px);
         opacity: 1;
-        transform: scale(1);
-      }
-      .envelope-intro__decor--h-tc,
-      .envelope-intro__decor--f-bc {
-        transform: translateX(-50%) scale(1);
       }
     }
 
@@ -1159,46 +951,24 @@
   </style>
 </head>
 <body>
-  <div id="envelopeIntro" class="envelope-intro" role="dialog" aria-modal="true" aria-labelledby="envelopeIntroTitle">
-    <p id="envelopeIntroTitle" class="envelope-intro__tagline">청첩장이 도착했어요</p>
-    <div class="envelope-intro__stage" aria-hidden="true">
-      <div class="envelope-intro__base"></div>
-      <div class="envelope-intro__inner-fold"></div>
-      <div class="envelope-intro__lift">
-        <span class="envelope-intro__decor envelope-intro__decor--heart envelope-intro__decor--heart-md envelope-intro__decor--h-tl" aria-hidden="true">♥</span>
-        <span class="envelope-intro__decor envelope-intro__decor--heart envelope-intro__decor--heart-sm envelope-intro__decor--h-tr" aria-hidden="true">♥</span>
-        <span class="envelope-intro__decor envelope-intro__decor--heart envelope-intro__decor--heart-lg envelope-intro__decor--h-tc" aria-hidden="true">♥</span>
-        <span class="envelope-intro__decor envelope-intro__decor--heart envelope-intro__decor--heart-sm envelope-intro__decor--h-bl" aria-hidden="true">♥</span>
-        <span class="envelope-intro__decor envelope-intro__decor--heart envelope-intro__decor--heart-md envelope-intro__decor--h-br" aria-hidden="true">♥</span>
-        <svg class="envelope-intro__decor envelope-intro__decor--flower envelope-intro__decor--f-ml" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="11" r="5" fill="#ff9ec4" opacity="0.95"/>
-          <circle cx="11" cy="16" r="5" fill="#ffa8c8"/>
-          <circle cx="21" cy="16" r="5" fill="#ff9bb8"/>
-          <circle cx="13" cy="22" r="5" fill="#ffb3cf"/>
-          <circle cx="19" cy="22" r="5" fill="#ff8fb8"/>
-          <circle cx="16" cy="17" r="4" fill="#fff0f5"/>
-        </svg>
-        <svg class="envelope-intro__decor envelope-intro__decor--flower envelope-intro__decor--f-mr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="11" r="5" fill="#ffb3cf"/>
-          <circle cx="11" cy="16" r="5" fill="#ff9ec4"/>
-          <circle cx="21" cy="16" r="5" fill="#ffa8c8"/>
-          <circle cx="13" cy="22" r="5" fill="#ff8fb8"/>
-          <circle cx="19" cy="22" r="5" fill="#ff9bb8"/>
-          <circle cx="16" cy="17" r="4" fill="#fff5f8"/>
-        </svg>
-        <svg class="envelope-intro__decor envelope-intro__decor--flower envelope-intro__decor--f-bc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="10" r="4.5" fill="#ff8fb8"/>
-          <circle cx="11" cy="15" r="4.5" fill="#ff9ec4"/>
-          <circle cx="21" cy="15" r="4.5" fill="#ffb3cf"/>
-          <circle cx="16" cy="19" r="4.2" fill="#ffa8c8"/>
-          <circle cx="16" cy="15" r="3.2" fill="#fff0f5"/>
-        </svg>
-        <div class="envelope-intro__letter">
-          <span class="envelope-intro__letter-line">강동현 ♥ 유하연</span>
-          <span class="envelope-intro__letter-sub">Wedding Invitation</span>
+
+  <div class="envelope-intro">
+    <div class="envelope-wrapper">
+      <div class="envelope-back"></div>
+      <img class="envelope-opening-art" src="/img/opening.png" alt="" width="240" height="160" decoding="async">
+      <div class="letter">
+        <div class="letter-content">
+          <p class="letter-date-suit">2026. 07. 11</p>
+          <p class="letter-day-suit">Wedding Invitation</p>
+          <div class="letter-names-suit">
+            <span class="name">강동현</span>
+            <span class="and">♥</span>
+            <span class="name">유하연</span>
+          </div>
         </div>
       </div>
-      <div class="envelope-intro__flap"></div>
+      <div class="envelope-front"></div>
+      <div class="envelope-flap"></div>
     </div>
   </div>
 
@@ -1212,7 +982,7 @@
       </div>
     </section>
     <div style="text-align:center; margin-top: 40px; margin-bottom: -6px; background:#fff;">
-      <img src="/img/함께걷기.png" alt="함께걷기" style="display:inline-block; width:50%; max-width:150px; height:auto;">
+      <img src="/img/함께걷기.png" alt="신랑 신부가 함께 걷는 일러스트" style="display:inline-block; width:50%; max-width:150px; height:auto;">
     </div>
     <section class="section">
       <p class="small">살아가며 평생의 인연을 만나는 것,</p>
@@ -1224,7 +994,7 @@
       <p style="margin-top:28px;">신랑 강동현 · 신부 유하연</p>
       
       <div style="text-align:center; margin-top: 40px; margin-bottom: -6px; background:#fff;">
-        <img src="/img/꽃베너.png" alt="꽃베너" style="display:inline-block; width:70%; max-width:200px; height:auto;">
+        <img src="/img/꽃베너.png" alt="꽃 장식 배너 일러스트" style="display:inline-block; width:70%; max-width:200px; height:auto;">
       </div>    </section>
 
     <section class="section dark">
@@ -1261,20 +1031,21 @@
       </div>
       <div class="map">
         <div id="daumRoughmapContainer1774890700711" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+        <button type="button" class="map-touch-guard" id="mapTouchGuard" aria-label="지도 활성화">지도를 움직이려면 탭하세요</button>
       </div>
       <div class="btn-row">
         <a class="btn" href="https://naver.me/FV7Yg9qI" target="_blank" rel="noopener noreferrer">네이버 지도</a>
         <a class="btn" href="https://place.map.kakao.com/8282484" target="_blank" rel="noopener noreferrer">카카오맵</a>
       </div>
       <div class="location-detail" style="margin-top:22px; max-width:420px; margin-left:auto; margin-right:auto; text-align:left;">
-        <p style="font-size:15px; font-weight:600; margin:0 0 10px; text-align:center; color:#333;">네비게이션 검색</p>
-        <p class="small" style="margin:0 0 18px; line-height:1.8; color:#555;">▶ [별관주차장] 서소문공원(중구 칠패로 5) / [본관주차장] 브라운스톤서울(중구 청파로 464)</p>
-        <p style="font-size:15px; font-weight:600; margin:0 0 10px; text-align:center; color:#333;">지하철 이용</p>
-        <p class="small" style="margin:0 0 6px; line-height:1.8; color:#555;">▶ 2, 5호선 충정로역 4번 출구 : 도보 3분<br>출구방향으로 70M 직진 후 횡단보도 건너편 브라운스톤서울 3층</p>
-        <p class="small" style="margin:0 0 18px; line-height:1.8; color:#555;">▶ 1, 4호선 서울역 15번출구(공항철도역) : 도보 10분<br>“서울역 서부광장” 방향으로 나오신 후 한국경제신문사 방향 이동 후 맞은편</p>
+        <h3 class="location-subtitle">네비게이션 검색</h3>
+        <p class="small info-text" style="margin:0 0 18px; line-height:1.8; color:#555;">▶ [별관주차장] 서소문공원(중구 칠패로 5) / [본관주차장] 브라운스톤서울(중구 청파로 464)</p>
+        <h3 class="location-subtitle">지하철 이용</h3>
+        <p class="small info-text" style="margin:0 0 6px; line-height:1.8; color:#555;">▶ 2, 5호선 충정로역 4번 출구 : 도보 3분<br>출구방향으로 70M 직진 후 횡단보도 건너편 브라운스톤서울 3층</p>
+        <p class="small info-text" style="margin:0 0 18px; line-height:1.8; color:#555;">▶ 1, 4호선 서울역 15번출구(공항철도역) : 도보 10분<br>“서울역 서부광장” 방향으로 나오신 후 한국경제신문사 방향 이동 후 맞은편</p>
 
-        <p style="font-size:15px; font-weight:600; margin:0 0 10px; text-align:center; color:#333;">버스 이용</p>
-        <div class="small" style="margin:0; line-height:1.75; color:#555;">
+        <h3 class="location-subtitle">버스 이용</h3>
+        <div class="small info-text" style="margin:0; line-height:1.75; color:#555;">
           <p style="margin:0 0 14px;"><strong style="font-weight:600; color:#444;">한국경제신문사</strong><br>
             (02516, 02109) [마을] 서대문06<br>
             [간선] 370, 603<br>
@@ -1494,40 +1265,7 @@
       </div>
     </div>
   </div>
-
-  <script>
-    (function () {
-      var intro = document.getElementById("envelopeIntro");
-      if (!intro) return;
-
-      function dismiss() {
-        if (intro.classList.contains("is-dismissed")) return;
-        intro.classList.add("is-dismissed");
-        document.body.classList.remove("envelope-intro-active");
-        setTimeout(function () {
-          if (intro.parentNode) intro.parentNode.removeChild(intro);
-          var mainEl = document.querySelector("main.wrap");
-          if (mainEl && mainEl.focus) {
-            mainEl.setAttribute("tabindex", "-1");
-            mainEl.focus({ preventScroll: true });
-          }
-        }, 580);
-      }
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        intro.remove();
-        return;
-      }
-
-      document.body.classList.add("envelope-intro-active");
-
-      intro.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") dismiss();
-      });
-
-      setTimeout(dismiss, 3650);
-    })();
-  </script>
+  <div class="copy-toast" id="copyToast" role="status" aria-live="polite"></div>
 
   <script>
     (function () {
@@ -1607,28 +1345,29 @@
           "/img/us/제시7.jpg",
           "/img/us/제시8.jpg",
         ];
-        var exts = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
-        var candidates = [];
-        var i;
-        var j;
-        for (i = 1; i <= 80; i += 1) {
-          for (j = 0; j < exts.length; j += 1) {
-            candidates.push("/img/us/" + i + "." + exts[j]);
-          }
-        }
-        candidates.push("/img/us/main.jpg", "/img/us/main.png");
-
-        var checked = await Promise.all(candidates.map(testImage));
-        var rest = checked.filter(function (p) { return !!p; });
         var preferredChecks = await Promise.all(preferredOrdered.map(testImage));
         var prefix = preferredChecks.filter(function (p) { return !!p; });
-        var skip = {};
-        prefix.forEach(function (p) {
-          skip[p] = true;
-        });
-        imagePaths = prefix.concat(rest.filter(function (p) {
-          return !skip[p];
-        }));
+        imagePaths = prefix.slice();
+
+        if (!imagePaths.length) {
+          var fallbackCandidates = [];
+          var exts = ["jpg", "jpeg", "png", "webp"];
+          var i;
+          var j;
+          for (i = 1; i <= 16; i += 1) {
+            for (j = 0; j < exts.length; j += 1) {
+              fallbackCandidates.push("/img/us/" + i + "." + exts[j]);
+            }
+          }
+          fallbackCandidates.push("/img/us/main.jpg", "/img/us/main.png");
+
+          for (i = 0; i < fallbackCandidates.length && imagePaths.length < 12; i += 1) {
+            var found = await testImage(fallbackCandidates[i]);
+            if (found && imagePaths.indexOf(found) === -1) {
+              imagePaths.push(found);
+            }
+          }
+        }
 
         if (imagePaths.length === 0) {
           return;
@@ -1732,11 +1471,25 @@
           document.body.removeChild(ta);
         });
       }
+      var toast = document.getElementById("copyToast");
+      var toastTimer = 0;
+
+      function showCopyToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg || "복사되었습니다.";
+        toast.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 1400);
+      }
+
       function bindCopyFeedback(btn, textGetter, failMsg) {
         btn.addEventListener("click", function () {
           copyText(textGetter()).then(function () {
             var prev = btn.getAttribute("aria-label");
             btn.setAttribute("aria-label", "복사됨");
+            showCopyToast("복사되었습니다.");
             setTimeout(function () {
               btn.setAttribute("aria-label", prev || "");
             }, 1500);
@@ -1777,15 +1530,25 @@
         });
       });
 
+      var mapEl = document.querySelector(".map");
+      var mapGuard = document.getElementById("mapTouchGuard");
+      if (mapEl && mapGuard) {
+        mapGuard.addEventListener("click", function () {
+          mapEl.classList.add("map--active");
+          showCopyToast("지도가 활성화되었습니다.");
+        });
+      }
+
       // 청첩장 주소 복사
       var inviteBtn = document.querySelector(".btn-copy-invite-url");
       if (inviteBtn) {
-        var inviteUrl = "https://donghahappyday.vercel.app/";
+        var inviteUrl = window.location.href;
         var prevLabel = inviteBtn.getAttribute("aria-label") || "청첩장 주소 복사하기";
         inviteBtn.addEventListener("click", function (e) {
           e.preventDefault();
           copyText(inviteUrl).then(function () {
             inviteBtn.setAttribute("aria-label", "복사됨");
+            showCopyToast("청첩장 주소가 복사되었습니다.");
             setTimeout(function () {
               inviteBtn.setAttribute("aria-label", prevLabel);
             }, 1500);
@@ -1971,6 +1734,19 @@
       "mapWidth": "640",
       "mapHeight": "360"
     }).render();
+  </script>
+
+  <script>
+    // 애니메이션이 완전히 끝난 후 인트로를 제거하는 로직
+    setTimeout(function () {
+      var introSection = document.querySelector(".envelope-intro");
+      if (introSection) {
+        introSection.classList.add("fade-out");
+        setTimeout(function () {
+          introSection.remove();
+        }, 1000);
+      }
+    }, 3200);
   </script>
 </body>
 </html>
