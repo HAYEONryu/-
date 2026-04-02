@@ -350,6 +350,98 @@
       font-size: 22px;
       letter-spacing: .03em;
     }
+    .upload-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100050;
+      padding: 14px;
+    }
+    .upload-modal.open { display: flex; }
+    .upload-modal__panel {
+      width: min(720px, 100%);
+      height: auto;
+      background: #fff;
+      display: grid;
+      grid-template-rows: 56px auto auto;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 16px 60px rgba(0, 0, 0, .18);
+    }
+    .upload-modal__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      background: #f7f7f7;
+      border-bottom: 1px solid #eee;
+    }
+    .upload-modal__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+    .upload-modal__close {
+      border: 0;
+      background: transparent;
+      color: #9a9a9a;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+    .upload-modal__body {
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+    .upload-file {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fafafa;
+      border: 1px solid #eee;
+    }
+    .upload-file__row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .upload-file__hint {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.45;
+    }
+    .upload-file__list {
+      margin: 0;
+      padding-left: 16px;
+      color: #666;
+      font-size: 12px;
+      max-height: 160px;
+      overflow: auto;
+    }
+    .upload-file__list li { margin: 4px 0; }
+    .upload-file__meta {
+      font-size: 12px;
+      color: #999;
+    }
+    .upload-modal__bottom {
+      padding: 12px 14px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .upload-modal__bottom .btn { min-width: 160px; }
+    .btn[disabled] { opacity: .55; cursor: not-allowed; }
     .map {
       margin-top: 16px;
       border-radius: 8px;
@@ -1004,10 +1096,10 @@
       <p style="margin-top:28px;">신랑 강동현 · 신부 유하연</p>
 
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:40px; margin-bottom:-6px; background:#fff;">
-        <a href="https://photos.app.goo.gl/NWA5GszyPeKbbSoo9" target="_blank" rel="noopener noreferrer" aria-label="Google 포토 앨범 2026/07/11 하연&동현 Happyday 열기" style="display:block; line-height:0;">
+        <button type="button" id="photoUploadQrBtn" aria-haspopup="dialog" aria-controls="photoUploadModal" aria-label="사진 업로드(모달 열기)" style="display:block; line-height:0; border:0; padding:0; background:transparent; cursor:pointer;">
           <img src="/img/photoQR.png" alt="" style="display:block; width:auto; max-width:160px; height:auto;">
-        </a>
-        <p class="small">QR 클릭 시 업로드 가능:)</p>
+        </button>
+        <p class="small">QR 클릭 시 업로드 모달이 열립니다 :)</p>
       </div>
     </section>
 
@@ -1113,6 +1205,32 @@
     </div>
   </div>
   <div class="copy-toast" id="copyToast" role="status" aria-live="polite"></div>
+
+  <div class="upload-modal" id="photoUploadModal" aria-hidden="true">
+    <div class="upload-modal__panel" role="dialog" aria-modal="true" aria-label="사진 업로드">
+      <div class="upload-modal__top">
+        <div class="upload-modal__title">사진 업로드</div>
+        <button type="button" class="upload-modal__close" id="photoUploadModalClose" aria-label="닫기">×</button>
+      </div>
+      <div class="upload-modal__body">
+        <div class="upload-file">
+          <div class="upload-file__row">
+            <div class="upload-file__meta" id="photoUploadStatus">사진을 선택해 주세요.</div>
+            <button type="button" class="btn" id="photoPickBtn">사진 선택</button>
+            <input id="photoUploadInput" type="file" accept="image/*" multiple style="position:absolute; left:-9999px; width:1px; height:1px;" />
+          </div>
+          <div class="upload-file__hint">
+            여러 장을 한 번에 선택할 수 있어요. 파일은 원본 그대로 업로드됩니다. (네트워크 상황에 따라 시간이 걸릴 수 있습니다.)
+          </div>
+          <ul class="upload-file__list" id="photoUploadList" aria-label="선택한 파일 목록"></ul>
+        </div>
+      </div>
+      <div class="upload-modal__bottom">
+        <button type="button" class="btn primary" id="photoUploadBtn" disabled>업로드</button>
+        <button type="button" class="btn" id="photoUploadDoneBtn">닫기</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     (function () {
@@ -1404,6 +1522,174 @@
           });
         });
       }
+
+      // 사진 업로드 모달
+      var uploadModal = document.getElementById("photoUploadModal");
+      var uploadModalClose = document.getElementById("photoUploadModalClose");
+      var uploadQrBtn = document.getElementById("photoUploadQrBtn");
+      var uploadDoneBtn = document.getElementById("photoUploadDoneBtn");
+
+      var pickBtn = document.getElementById("photoPickBtn");
+      var fileInput = document.getElementById("photoUploadInput");
+      var uploadBtn = document.getElementById("photoUploadBtn");
+      var fileList = document.getElementById("photoUploadList");
+      var statusEl = document.getElementById("photoUploadStatus");
+
+      // Cloudinary (unsigned 업로드)
+      var cloudinaryUrl = "https://api.cloudinary.com/v1_1/da2xijfim/image/upload";
+      // TODO: Cloudinary 콘솔에서 unsigned upload preset을 만든 뒤 여기에 입력하세요.
+      // 예) "wedding_upload"
+      var cloudinaryUploadPreset = "weddingpics";
+
+      var selectedFiles = [];
+      var isUploading = false;
+      var MAX_UPLOAD_FILES = 20;
+
+      function formatBytes(n) {
+        if (!n && n !== 0) return "";
+        if (n < 1024) return n + " B";
+        var kb = n / 1024;
+        if (kb < 1024) return kb.toFixed(1) + " KB";
+        var mb = kb / 1024;
+        return mb.toFixed(1) + " MB";
+      }
+
+      function setStatus(msg) {
+        if (!statusEl) return;
+        statusEl.textContent = msg || "";
+      }
+
+      function renderFileList() {
+        if (!fileList) return;
+        fileList.innerHTML = "";
+        if (!selectedFiles.length) return;
+        selectedFiles.forEach(function (f) {
+          var li = document.createElement("li");
+          li.textContent = f.name + " (" + formatBytes(f.size) + ")";
+          fileList.appendChild(li);
+        });
+      }
+
+      function setUploadingState(next) {
+        isUploading = !!next;
+        if (pickBtn) pickBtn.disabled = isUploading;
+        if (fileInput) fileInput.disabled = isUploading;
+        if (uploadBtn) uploadBtn.disabled = isUploading || selectedFiles.length === 0;
+        if (uploadDoneBtn) uploadDoneBtn.disabled = isUploading;
+      }
+
+      function openUploadModal() {
+        if (!uploadModal) return;
+        uploadModal.classList.add("open");
+        uploadModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        setStatus("사진을 선택해 주세요.");
+      }
+
+      function closeUploadModal() {
+        if (!uploadModal) return;
+        uploadModal.classList.remove("open");
+        uploadModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      if (uploadModal && uploadQrBtn) {
+        uploadQrBtn.addEventListener("click", function () {
+          openUploadModal();
+        });
+      }
+      if (uploadModalClose) {
+        uploadModalClose.addEventListener("click", function () {
+          closeUploadModal();
+        });
+      }
+      if (uploadDoneBtn) {
+        uploadDoneBtn.addEventListener("click", function () {
+          closeUploadModal();
+        });
+      }
+      if (pickBtn && fileInput) {
+        pickBtn.addEventListener("click", function () {
+          fileInput.click();
+        });
+      }
+      if (fileInput) {
+        fileInput.addEventListener("change", function () {
+          selectedFiles = Array.prototype.slice.call(fileInput.files || []);
+          if (selectedFiles.length > MAX_UPLOAD_FILES) {
+            selectedFiles = selectedFiles.slice(0, MAX_UPLOAD_FILES);
+            showCopyToast("한 번에 최대 " + MAX_UPLOAD_FILES + "장까지 업로드 가능해요.");
+          }
+          renderFileList();
+          if (selectedFiles.length) setStatus(selectedFiles.length + "장 선택됨 (최대 " + MAX_UPLOAD_FILES + "장)");
+          else setStatus("사진을 선택해 주세요.");
+          if (uploadBtn) uploadBtn.disabled = isUploading || selectedFiles.length === 0;
+        });
+      }
+
+      function uploadOne(file) {
+        var fd = new FormData();
+        fd.append("file", file);
+        fd.append("upload_preset", cloudinaryUploadPreset);
+        return fetch(cloudinaryUrl, { method: "POST", body: fd }).then(function (res) {
+          if (!res.ok) throw new Error("upload failed: " + res.status);
+          return res.json();
+        });
+      }
+
+      if (uploadBtn) {
+        uploadBtn.addEventListener("click", function () {
+          if (isUploading) return;
+          if (!selectedFiles.length) {
+            showCopyToast("업로드할 사진을 먼저 선택해 주세요.");
+            return;
+          }
+          if (selectedFiles.length > MAX_UPLOAD_FILES) {
+            selectedFiles = selectedFiles.slice(0, MAX_UPLOAD_FILES);
+            showCopyToast("한 번에 최대 " + MAX_UPLOAD_FILES + "장까지 업로드 가능해요.");
+            renderFileList();
+            setStatus(selectedFiles.length + "장 선택됨 (최대 " + MAX_UPLOAD_FILES + "장)");
+          }
+          if (!cloudinaryUploadPreset) {
+            alert("Cloudinary upload_preset이 설정되지 않았습니다.\nindex.html의 cloudinaryUploadPreset 값을 채워주세요.");
+            return;
+          }
+
+          setUploadingState(true);
+          setStatus("업로드 중... (0 / " + selectedFiles.length + ")");
+
+          var done = 0;
+          var tasks = selectedFiles.map(function (f) {
+            return uploadOne(f).then(function () {
+              done += 1;
+              setStatus("업로드 중... (" + done + " / " + selectedFiles.length + ")");
+            });
+          });
+
+          Promise.all(tasks).then(function () {
+            setUploadingState(false);
+            showCopyToast("업로드 완료");
+            setStatus("업로드 완료! 감사합니다.");
+            selectedFiles = [];
+            if (fileInput) fileInput.value = "";
+            renderFileList();
+          }).catch(function () {
+            setUploadingState(false);
+            alert("업로드에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+            setStatus("업로드 실패");
+          });
+        });
+      }
+      setUploadingState(false);
+      if (uploadModal) {
+        uploadModal.addEventListener("click", function (e) {
+          if (e.target === uploadModal) closeUploadModal();
+        });
+      }
+      document.addEventListener("keydown", function (e) {
+        if (!uploadModal || !uploadModal.classList.contains("open")) return;
+        if (e.key === "Escape") closeUploadModal();
+      });
     })();
   </script>
 
